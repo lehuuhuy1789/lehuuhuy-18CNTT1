@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+    function validateForm() {
+        var id = document.getElementById("id").value;
+        var name = document.getElementById("name").value;
+        var address = document.getElementById("address").value;
+        var phoneNumber = document.getElementById("phoneNumber").value;
+
+        idHeader = id.slice(0, 4);
+        idTail = id.slice(4);
+
+        if (idHeader !== "20IT") {
+            alert('mã SV phải bắt đầu bằng "20IT"');
+
+            return false;
+        } else if (idTail.length !== 3 || isNaN(idTail) == true) {
+            alert('mã SV có dạng "20ITx" với x là số có 3 ký tự');
+
+            return false;
+        } else if (name == "") {
+            alert("Bạn chưa nhập tên sinh viên");
+
+            return false;
+        } else if (address == "") {
+            alert("Bạn chưa nhập địa chỉ liên lạc");
+
+            return false;
+        } else if (
+            phoneNumber == "" ||
+            phoneNumber.length < 6 ||
+            phoneNumber.length > 10
+        ) {
+            alert(
+                "Bạn chưa nhập số điện thoại, vui lòng nhập từ 6 đến 10 số"
+            );
+
+            return false;
+        } else {
+            alert(`Thông tin của bạn là:
+        Mã sinh viên: ${id}
+        Tên sinh viên: ${name}
+        Địa chỉ liên lạc: ${address}
+        Số điện thoại: ${phoneNumber}`);
+
+            return true;
+        }
+    }
+</script>
+
+
+<body>
+<h1>Quản lí danh sách thông tin sinh viên</h1>
+<div></div>
+<form method="GET" onsubmit="return validateForm()">
+    <label>Mã sinh viên:</label><p>
+    <input type="text" id="id"><br></p>
+    <label>Họ và tên sinh viên:</label><p>
+    <input type="text" id="name"><br></p>
+    <label>Địa chỉ liên lạc:</label><p>
+    <input type="text" id="address"><br></p>
+    <label>Số điện thoại:</label><p>
+    <input type="text" id="phoneNumber"><br></p>
+    <input type="submit" id="button" value="Xác nhận">
+</form>
+
+</body>
+
+</html>
